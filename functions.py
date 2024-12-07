@@ -1,11 +1,20 @@
 import datetime
+import argparse
 
+def create_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--path', default='https://vk.cc/cx80Y1')
+    return parser
 
-def correct_ending():
+def years_passed():
     ongoing_date = datetime.datetime.now()
     delta_years = int(ongoing_date.year) - 1920
-    decades = delta_years%100
+    return delta_years
+
+
+def correct_ending(delta_years):
     text_template = "Уже "+str(delta_years)+" {} с вами"
+    decades = delta_years%100
     if 10<decades<21:
         winery_age = text_template.format("лет")
     else:
