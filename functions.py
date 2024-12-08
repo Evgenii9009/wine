@@ -3,7 +3,7 @@ import argparse
 
 def create_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--path', default='https://vk.cc/cx80Y1')
+    parser.add_argument('--path', default='wine3.xlsx')
     return parser
 
 def years_passed():
