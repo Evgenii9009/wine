@@ -1,7 +1,8 @@
 import pandas 
 import collections
+import datetime
 
-from functions import correct_ending, years_passed, create_parser
+from functions import correct_ending, counting_years, create_parser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -11,11 +12,11 @@ def main():
         autoescape=select_autoescape(['html', 'xml'])
     )
     template = env.get_template('template.html')
-
-    delta_years = years_passed()
+    ongoing_date = datetime.datetime.now()
+    delta_years = counting_years(ongoing_date)
     winery_text = correct_ending(delta_years)
 
-    path = create_parser().parse_args().path
+    path = create_parser().parse_args().datapath
     wines_excel = pandas.read_excel(path)
     wines_excel = wines_excel.fillna("")
     wines = wines_excel.to_dict(orient='records')
