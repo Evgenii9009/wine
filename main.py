@@ -1,10 +1,12 @@
-import pandas 
+import pandas
 import collections
 import datetime
+
 
 from functions import correct_ending, counting_years, create_parser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+
 
 def main():
     env = Environment(
@@ -25,7 +27,7 @@ def main():
         wine_type = wine["Категория"]
         wine_collection[wine_type].append(wine)
     rendered_page = template.render(
-        wine_collection=wine_collection, 
+        wine_collection=wine_collection,
         winery_age=winery_text
         )
     with open('index.html', 'w', encoding="utf8") as file:
@@ -34,5 +36,5 @@ def main():
     server.serve_forever()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
